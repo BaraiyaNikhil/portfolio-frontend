@@ -1,0 +1,110 @@
+// ProjectCard.jsx
+import React, { useState } from "react";
+import { motion, useReducedMotion } from "motion/react";
+import { useData } from "../context/DataContext";
+import CustomCursor from "../animetions/CustomCursor";
+
+export default function ProjectCard({
+  title = "Project Title",
+  description = "Short project description goes here.",
+  url = "#",
+  techs = [],
+  imageSrc,
+  isReverse = false,
+  isMobile: isMobileProp = false,
+}) {
+  const { techIcons, isMobile: isMobileCtx } = useData();
+  const isMobile = isMobileProp ?? isMobileCtx;
+  const prefersReduced = useReducedMotion();
+  const imgY = prefersReduced || isMobile ? 8 : 20;
+  const viewport = { once: false, amount: 0.2 };
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <motion.article
+      className="disable-cursor-glow project-card relative w-full max-w-7xl mx-auto bg-transparent shadow-inner shadow-slate-500 rounded-2xl p-10 cursor-none"
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewport}
+      variants={{
+        hidden: {},
+        visible: { transition: { staggerChildren: 0.12 } },
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{ cursor: hovered ? "none" : "auto" }}
+    >
+      {/* 👇 Only show custom cursor on hover */}
+      <CustomCursor text="👀" active={hovered} />
+
+      <div
+        className={`flex flex-col lg:items-center lg:justify-between lg:gap-8 lg:flex-row ${
+          isReverse ? "lg:flex-row-reverse" : "lg:flex-row"
+        }`}
+      >
+        {/* Project Image */}
+        <motion.div
+          className="lg:w-1/2 w-full flex-shrink-0"
+          variants={{
+            hidden: { opacity: 0, y: imgY },
+            visible: { opacity: 1, y: 0 },
+          }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+        >
+          <div className="rounded-2xl overflow-hidden shadow-xl bg-slate-800 shadow-slate-600">
+            <img
+              src={imageSrc}
+              alt={`${title} screenshot`}
+              className="w-full h-96 object-cover bg-center block"
+            />
+          </div>
+        </motion.div>
+
+        {/* Project Info */}
+        <motion.div
+          className="lg:w-1/2 w-full mt-6 lg:mt-0"
+          variants={{
+            hidden: { opacity: 0, y: 18 },
+            visible: { opacity: 1, y: 0 },
+          }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+        >
+          <h3 className="text-3xl lg:text-4xl font-extrabold leading-tight">
+            {title}
+          </h3>
+
+          <a
+            href={url}
+            target="_blank"
+            rel="noreferrer"
+            className="w-full mt-3 inline-block text-lg font-semibold text-indigo-500 hover:underline"
+          >
+            Github Link
+          </a>
+
+          {/* Tech Stack */}
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            {techs.length === 0 ? (
+              <span className="text-sm">No techs listed</span>
+            ) : (
+              techs.map((t) => (
+                <motion.div
+                  key={t}
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-700 shadow-lg shadow-slate-600"
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ duration: 0.15 }}
+                >
+                  {techIcons[t] || null}
+                  <span className="text-sm text-white">{t}</span>
+                </motion.div>
+              ))
+            )}
+          </div>
+
+          {/* Description */}
+          <p className="mt-5 text-base lg:text-lg max-w-xl">{description}</p>
+        </motion.div>
+      </div>
+    </motion.article>
+  );
+}

@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+:root {
+  --font-heading: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --my-gradient1: #feac5e;
+  --my-gradient2: #c779d0;
+  --my-gradient3: #4bc0c8;
+}
+
+/* *{outline: 1px solid rgba(255,0,0,0.12);} */
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-image: url("../assets/imgs/portfolio-bg-img.jpeg");
+  background-repeat: no-repeat;
+  background-position: top top;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: var(--font-body);
+  line-height: 1.5;
+  color: #0f172a;
+}
+
+h2,
+h3 {
+  font-family: var(--font-heading);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.download {
+  cursor: url("../assets/imgs/cursor.png") 4 4, pointer;
+}
+
+
+
