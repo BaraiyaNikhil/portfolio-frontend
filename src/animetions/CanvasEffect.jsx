@@ -3,12 +3,12 @@ import { useEffect, useRef } from "react";
 function RainCanvas({
   density = 120,
   color = "rgba(190,220,255,0.9)",
-  mouseRadius = 90,
+  mouseRadius = 85,
   splashCount = 6,
   disabledOnMobile = true,
 }) {
   const canvasRef = useRef(null);
-  const mouseRef = useRef({ x: -1000, y: -1000, hovering: false });
+  const mouseRef = useRef({ x: -1000, y: -1000, active: false });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -45,12 +45,11 @@ function RainCanvas({
       update() {
         this.y += this.vy;
 
-        // collision with mouse only if hovering
-        if (mouseRef.current.hovering) {
+        // collision with cursor only when active
+        if (mouseRef.current.active) {
           const dx = this.x - mouseRef.current.x;
-          const dy = this.y - mouseRef.current.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < mouseRadius) {
+          const dy = this.y - mouseRef.current.y - 50;
+          if (dx * dx + dy * dy < mouseRadius * mouseRadius) {
             createSplash(this.x, this.y);
             this.reset();
           }
@@ -98,13 +97,12 @@ function RainCanvas({
     const drops = Array.from({ length: density }, () => new Drop());
     let splashes = [];
 
-    const createSplash = (x, y, bottom = false) => {
+    const createSplash = (x, y) => {
       for (let i = 0; i < splashCount; i++) {
         splashes.push(new Splash(x, y));
       }
-      if (splashes.length > 500) {
-        splashes = splashes.slice(-400);
-      }
+      // keep splashes array light
+      if (splashes.length > 400) splashes.splice(0, splashes.length - 300);
     };
 
     const animate = () => {
@@ -113,10 +111,11 @@ function RainCanvas({
         d.update();
         d.draw();
       });
-      splashes.forEach((s, i) => {
+      splashes = splashes.filter((s) => {
         s.update();
-        if (s.alpha <= 0) splashes.splice(i, 1);
-        else s.draw();
+        if (s.alpha <= 0) return false;
+        s.draw();
+        return true;
       });
       requestAnimationFrame(animate);
     };
@@ -128,15 +127,12 @@ function RainCanvas({
       mouseRef.current.y = e.clientY - rect.top;
     };
     const handleEnter = () => {
-      mouseRef.current.hovering = true;
-      window.dispatchEvent(new CustomEvent("canvas-hover", { detail: { hovering: true } }));
+      mouseRef.current.active = true;
     };
     const handleLeave = () => {
-      mouseRef.current.hovering = false;
-      // move cursor far away so no collision occurs
+      mouseRef.current.active = false;
       mouseRef.current.x = -1000;
       mouseRef.current.y = -1000;
-      window.dispatchEvent(new CustomEvent("canvas-hover", { detail: { hovering: false } }));
     };
 
     canvas.addEventListener("mousemove", handleMove);
@@ -151,7 +147,12 @@ function RainCanvas({
     };
   }, [density, color, mouseRadius, splashCount, disabledOnMobile]);
 
-  return <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full z-0 disable-cursor-glow" />;
+  return (
+    <canvas
+      ref={canvasRef}
+      className="disable-cursor-glow absolute top-0 left-0 w-full h-full z-0 pointer-events-auto"
+    />
+  );
 }
 
 export default RainCanvas;

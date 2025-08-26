@@ -1,4 +1,6 @@
 import CursorGlow from "./animetions/CursorGlow";
+import { CursorProvider } from "./context/CursorContext";
+import CustomCursor from "./animetions/CustomCursor";
 import Stich from "./components/Stich";
 import Navbar from "./components/Navbar";
 import Hero from "./pages/Hero";
@@ -15,14 +17,16 @@ function App() {
   return (
     <>
     <Navbar/>
+    <CursorProvider>
     <CursorGlow/>
+    <CustomCursor />
       <div className="relative">
         <Hero />
         <Stich/>
         <AboutMe />
         <Stich/>
         <Experience/>
-        <Stich/>
+        <Stich/> 
         <Projects/>
         <Stich/>
         <Skills/>
@@ -32,6 +36,7 @@ function App() {
         <ContactMe/>
         <Stich/>
       </div>
+      </CursorProvider>
       <Footer/>
     </>
   )

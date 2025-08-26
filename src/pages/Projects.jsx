@@ -14,13 +14,29 @@ export default function Projects() {
     description:
       "The To-Do List system is a modern digital platform that replaces paper-based methods, allowing users to easily create, update, and organize tasks with features like prioritization, deadlines, and collaboration. Its simple, user-friendly interface suits all skill levels, while automation reduces manual effort and boosts productivity, making it ideal for both personal use and team projects.",
     url: "https://github.com/BaraiyaNikhil/Projects/tree/0ba9632a74783a49cb6cbae7ca3800f6b2369d2a/mern-todo-app",
-    techs: ["HTML", "CSS", "JavaScript", "React", "Express", "Node.js", "MongoDB"],
+    techs: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React",
+      "Express",
+      "Node.js",
+      "MongoDB",
+    ],
     imageSrc: todoImage,
     isReverse: true,
   };
 
   return (
-    <div id="projects" className="w-full bg-slate-300 h-full flex flex-col md:flex-col overflow-x-hidden p-6 sm:p-10">
+    <div
+      id="projects"
+      className="w-full sticky bg-slate-300 lg:bg-slate-400 lg:top-10 lg:z-30 lg:rounded-t-2xl h-full flex flex-col overflow-x-hidden p-6 sm:p-10"
+    >
+      <span
+        className="absolute top-3 right-3 text-slate-900 text-lg font-semibold tracking-wide"
+      >
+        Projects
+      </span>
       <motion.h1
         initial={{ opacity: 0, x: -40 }}
         whileInView={{ opacity: 1, x: 0 }}

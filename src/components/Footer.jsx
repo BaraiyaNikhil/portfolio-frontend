@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import logo from "../assets/imgs/logo.png";
-import resume from "../assets/files/BaraiyaNikhilResume.pdf"
+import resume from "../assets/files/BaraiyaNikhilResume.pdf";
 
 const Footer = () => {
   const messages = [
@@ -46,7 +46,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="p-4 bg-slate-600 shadow-inner shadow-slate-300 sm:p-6">
+    <footer className="p-4 bg-slate-600 shadow-inner shadow-slate-300 sm:p-6 overflow-x-hidden">
       <motion.div
         className="mx-auto max-w-screen-xl"
         initial={{ opacity: 0, y: 40 }}
@@ -64,7 +64,7 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <img src={logo} className="mr-3 h-8" alt="logo" />
-            <h1 className="mt-3 text-2xl lg:text-5xl font-serif text-slate-200 hidden md:block">
+            <h1 className="mt-3 text-2xl lg:text-5xl font-serif text-slate-200 hidden md:block break-words">
               Let's Connect{" "}
               <span className="text-indigo-300">
                 {text}
@@ -111,7 +111,7 @@ const Footer = () => {
         <hr className="my-6 border-slate-300 sm:mx-auto lg:my-8" />
 
         <motion.div
-          className="sm:flex sm:items-center sm:justify-between gap-4"
+          className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.6 }}
@@ -121,7 +121,7 @@ const Footer = () => {
             © {new Date().getFullYear()} Baraiya Nikhil. All Rights Reserved.
           </span>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center gap-4">
             <a
               href={resume}
               download

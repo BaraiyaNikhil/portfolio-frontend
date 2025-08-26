@@ -95,13 +95,16 @@ export default function ContactMe() {
 
   const onSubmit = async (data) => {
   try {
-    const response = await fetch("/api/connect", {
+    const response = await fetch("https://portfolio-backend-qvsx.onrender.com/api/connect", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     });
+
+    console.log(data);
+
 
     const result = await response.json();
 
@@ -131,7 +134,7 @@ export default function ContactMe() {
   return (
     <div
       id="contact-me"
-      className="w-full bg-slate-300 h-full flex flex-col md:flex-col overflow-x-hidden p-6 sm:p-10"
+      className="w-full relative lg:z-60 bg-slate-300 lg:rounded-t-2xl h-full flex flex-col overflow-x-hidden p-6 sm:p-10"
     >
       <motion.h1
         initial={{ opacity: 0, x: -40 }}
@@ -224,7 +227,9 @@ export default function ContactMe() {
                 rows={5}
                 placeholder="Write your message…"
                 className="mt-1 block w-full rounded-xl border border-slate-300 bg-slate-50 text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-4 focus:ring-slate-300 focus:border-slate-500 shadow-inner shadow-slate-500"
-                {...register("message", { required: "Message is required" })}
+                {...register("massage", {
+                  required: "Massage is required",
+                })}
               />
               {errors.message && (
                 <p className="text-red-500 text-sm mt-1">

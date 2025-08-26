@@ -1,47 +1,34 @@
-// src/AboutMe.jsx
-import React, { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { useData } from "../context/DataContext";
 import CanvasEffect from "../animetions/CanvasEffect";
-import CustomCursor from "../animetions/CustomCursor";
+import { useCursor } from "../context/CursorContext";
 
 export default function AboutMe() {
   const { isMobile } = useData();
+  const { setCursorText, setActive } = useCursor();
   const prefersReducedMotion = useReducedMotion();
-  const [cursorActive, setCursorActive] = useState(false);
 
   const headingDist = prefersReducedMotion || isMobile ? -20 : -50;
   const paraY = prefersReducedMotion || isMobile ? 12 : 30;
   const viewport = { once: false, amount: 0.25 };
 
   return (
-    <div
-      id="about-me"
-      className="w-full h-auto flex flex-col md:flex-row overflow-x-hidden"
-    >
-      <div
-        id="about-info"
-        className="w-full lg:w-1/2 h-auto bg-slate-300 flex flex-col items-start p-6 sm:p-10 overflow-hidden"
-      >
-        {/* group: heading + paragraphs (staggered) */}
+    <div id="about-me" className="w-full h-auto flex flex-col md:flex-row overflow-x-hidden">
+      <div className="w-full lg:w-1/2 h-auto bg-slate-300 flex flex-col items-start p-6 sm:p-10 overflow-hidden">
+        {/* heading + paragraphs */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={viewport}
           variants={{
             hidden: {},
-            visible: {
-              transition: { staggerChildren: 0.28, delayChildren: 0.06 },
-            },
+            visible: { transition: { staggerChildren: 0.28, delayChildren: 0.06 } },
           }}
           className="w-full text-left"
         >
           <motion.h1
-            className="font-['Borel'] text-3xl sm:text-5xl lg:text-6xl mb-4 sm:mb-8 max-w-full pt-3 break-words leading-tight [text-shadow:_4px_4px_5px_rgba(15,23,42,0.3)]"
-            variants={{
-              hidden: { opacity: 0, x: headingDist },
-              visible: { opacity: 1, x: 0 },
-            }}
+            className="font-['Borel'] text-3xl sm:text-5xl lg:text-6xl mb-4 sm:mb-8 pt-3 leading-tight"
+            variants={{ hidden: { opacity: 0, x: headingDist }, visible: { opacity: 1, x: 0 } }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
           >
             About Me
@@ -49,10 +36,7 @@ export default function AboutMe() {
 
           <motion.p
             className="text-base sm:text-lg mb-4"
-            variants={{
-              hidden: { opacity: 0, y: paraY },
-              visible: { opacity: 1, y: 0 },
-            }}
+            variants={{ hidden: { opacity: 0, y: paraY }, visible: { opacity: 1, y: 0 } }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
           >
             &nbsp;A web developer who loves turning ideas into smooth,
@@ -68,10 +52,7 @@ export default function AboutMe() {
 
           <motion.p
             className="text-base sm:text-lg"
-            variants={{
-              hidden: { opacity: 0, y: paraY },
-              visible: { opacity: 1, y: 0 },
-            }}
+            variants={{ hidden: { opacity: 0, y: paraY }, visible: { opacity: 1, y: 0 } }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
           >
             &nbsp; I’m not just about writing code — I enjoy solving problems,
@@ -86,8 +67,11 @@ export default function AboutMe() {
       {/* right visual */}
       <div
         className="lg:w-1/2 hidden relative lg:flex items-center justify-center cursor-none"
-        onMouseEnter={() => setCursorActive(true)}
-        onMouseLeave={() => setCursorActive(false)}
+        onMouseEnter={() => {
+          setCursorText("My Favourite Season 🌧️");
+          setActive(true);
+        }}
+        onMouseLeave={() => setActive(false)}
       >
         <motion.div
           initial={{ opacity: 0, x: 50, scale: 0.98 }}
@@ -98,9 +82,6 @@ export default function AboutMe() {
         >
           <CanvasEffect mouseEffect={true} />
         </motion.div>
-
-        {/* Custom cursor only for right side */}
-        <CustomCursor text="My Favourite Season 🌧️" active={cursorActive} />
       </div>
     </div>
   );

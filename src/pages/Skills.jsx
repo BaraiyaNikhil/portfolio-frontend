@@ -10,8 +10,13 @@ export default function Skills() {
   const viewport = { once: false, amount: 0.18 };
 
   return (
-    <div id="skills" className="w-full bg-slate-300 h-full flex flex-col md:flex-col overflow-x-hidden p-6 sm:p-10">
+    <div id="skills" className="w-full sticky bg-slate-300 lg:top-20 lg:z-40 lg:rounded-t-2xl h-full flex flex-col overflow-x-hidden p-6 sm:p-10">
       <section>
+        <span
+        className="absolute top-3 right-3 text-slate-900 text-lg font-semibold tracking-wide"
+      >
+        My Skills
+      </span>
         <motion.h1
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}

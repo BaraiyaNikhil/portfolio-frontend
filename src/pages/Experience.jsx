@@ -13,8 +13,13 @@ export default function Experience() {
   return (
     <div
       id="experience"
-      className="w-full bg-slate-300 h-full flex flex-col md:flex-col overflow-x-hidden p-6 sm:p-10"
+      className="w-full sticky lg:top-0 lg:z-20 bg-slate-300 lg:rounded-t-2xl h-full flex flex-col overflow-x-hidden p-6 sm:p-10"
     >
+      <span
+        className="absolute top-3 right-3 text-slate-900 text-lg font-semibold tracking-wide"
+      >
+        Experience
+      </span>
       <motion.h1
         initial={{ opacity: 0, x: -40 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -25,7 +30,10 @@ export default function Experience() {
         Experience
       </motion.h1>
 
-      <div id="experience-info" className="relative w-full h-full flex flex-col justify-center items-center">
+      <div
+        id="experience-info"
+        className="relative w-full h-full flex flex-col justify-center items-center"
+      >
         <motion.div
           initial={{ opacity: 0, y: 24, scale: 0.98 }}
           whileInView={{ opacity: 1, y: 0, scale: imgScale }}
@@ -33,7 +41,11 @@ export default function Experience() {
           transition={{ duration: 1, ease: "easeInOut" }}
           className="container w-52 h-52 mb-6 z-10 rounded-xl overflow-hidden hover:scale-105 transition-transform"
         >
-          <img src={johnCena} alt="John Cena" className="w-full h-full object-cover hover:opacity-0 backdrop-blur-lg duration-500" />
+          <img
+            src={johnCena}
+            alt="John Cena"
+            className="w-full h-full object-cover hover:opacity-0 backdrop-blur-lg duration-500"
+          />
         </motion.div>
 
         <motion.h2

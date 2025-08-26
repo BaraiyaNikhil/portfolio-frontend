@@ -1,8 +1,6 @@
-// ProjectCard.jsx
-import React, { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { useData } from "../context/DataContext";
-import CustomCursor from "../animetions/CustomCursor";
+import { useCursor } from "../context/CursorContext";
 
 export default function ProjectCard({
   title = "Project Title",
@@ -14,11 +12,11 @@ export default function ProjectCard({
   isMobile: isMobileProp = false,
 }) {
   const { techIcons, isMobile: isMobileCtx } = useData();
+  const { setCursorText, setActive } = useCursor();
   const isMobile = isMobileProp ?? isMobileCtx;
   const prefersReduced = useReducedMotion();
   const imgY = prefersReduced || isMobile ? 8 : 20;
   const viewport = { once: false, amount: 0.2 };
-  const [hovered, setHovered] = useState(false);
 
   return (
     <motion.article
@@ -26,17 +24,13 @@ export default function ProjectCard({
       initial="hidden"
       whileInView="visible"
       viewport={viewport}
-      variants={{
-        hidden: {},
-        visible: { transition: { staggerChildren: 0.12 } },
+      variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }}
+      onMouseEnter={() => {
+        setCursorText("👀");
+        setActive(true);
       }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{ cursor: hovered ? "none" : "auto" }}
+      onMouseLeave={() => setActive(false)}
     >
-      {/* 👇 Only show custom cursor on hover */}
-      <CustomCursor text="👀" active={hovered} />
-
       <div
         className={`flex flex-col lg:items-center lg:justify-between lg:gap-8 lg:flex-row ${
           isReverse ? "lg:flex-row-reverse" : "lg:flex-row"
@@ -45,40 +39,23 @@ export default function ProjectCard({
         {/* Project Image */}
         <motion.div
           className="lg:w-1/2 w-full flex-shrink-0"
-          variants={{
-            hidden: { opacity: 0, y: imgY },
-            visible: { opacity: 1, y: 0 },
-          }}
+          variants={{ hidden: { opacity: 0, y: imgY }, visible: { opacity: 1, y: 0 } }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
         >
           <div className="rounded-2xl overflow-hidden shadow-xl bg-slate-800 shadow-slate-600">
-            <img
-              src={imageSrc}
-              alt={`${title} screenshot`}
-              className="w-full h-96 object-cover bg-center block"
-            />
+            <img src={imageSrc} alt={`${title} screenshot`} className="w-full h-96 object-cover" />
           </div>
         </motion.div>
 
         {/* Project Info */}
         <motion.div
           className="lg:w-1/2 w-full mt-6 lg:mt-0"
-          variants={{
-            hidden: { opacity: 0, y: 18 },
-            visible: { opacity: 1, y: 0 },
-          }}
+          variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
         >
-          <h3 className="text-3xl lg:text-4xl font-extrabold leading-tight">
-            {title}
-          </h3>
+          <h3 className="text-3xl lg:text-4xl font-extrabold leading-tight">{title}</h3>
 
-          <a
-            href={url}
-            target="_blank"
-            rel="noreferrer"
-            className="w-full mt-3 inline-block text-lg font-semibold text-indigo-500 hover:underline"
-          >
+          <a href={url} target="_blank" rel="noreferrer" className="mt-3 inline-block text-lg font-semibold text-indigo-500 hover:underline">
             Github Link
           </a>
 
@@ -101,7 +78,6 @@ export default function ProjectCard({
             )}
           </div>
 
-          {/* Description */}
           <p className="mt-5 text-base lg:text-lg max-w-xl">{description}</p>
         </motion.div>
       </div>

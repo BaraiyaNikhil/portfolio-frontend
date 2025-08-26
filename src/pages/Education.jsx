@@ -22,7 +22,12 @@ export default function Education() {
   ];
 
   return (
-    <div id="education" className="w-full bg-slate-300 flex flex-col overflow-x-hidden p-6 sm:p-10">
+    <div id="education" className="w-full sticky bg-slate-300 lg:bg-slate-400 lg:top-30 lg:z-50 lg:rounded-t-2xl flex flex-col overflow-x-hidden p-6 sm:p-10">
+      <span
+        className="absolute top-3 right-3 text-slate-900 text-lg font-semibold tracking-wide"
+      >
+        Education
+      </span>
       <motion.h1 initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, ease: "easeInOut" }} viewport={viewport} className="font-['Borel'] text-3xl sm:text-5xl lg:text-6xl mb-6 leading-tight pt-3">
         Education
       </motion.h1>

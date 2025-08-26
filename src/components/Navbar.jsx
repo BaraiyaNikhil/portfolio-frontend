@@ -55,7 +55,7 @@ const Navbar = () => {
 
       {mobileMenuOpen && (
         <motion.div 
-        className="lg:hidden fixed right-0 top-1/2 -translate-y-1/2 z-40 pointer-events-none"
+        className="lg:hidden fixed right-0 top-1/2 -translate-y-1/2 z-40 pointer-events-auto"
          aria-hidden={!mobileMenuOpen}
          >
           <div className="relative rounded-full" style={{ width: 290, height: 290 }}>
