@@ -67,7 +67,7 @@ function Hero() {
 
       {/* Mobile Profile Image */}
       <motion.div
-        className="lg:hidden w-32 h-32 mx-5 my-3 absolute top-10 right-5 rounded-b-full overflow-hidden shadow-lg shadow-slate-600"
+        className="lg:hidden w-30 h-30 mx-5 my-3 absolute top-10 right-5 rounded-b-full overflow-hidden shadow-lg shadow-slate-600"
         initial={{ x: 20, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}

@@ -14,6 +14,7 @@ export default function Projects() {
     description:
       "The To-Do List system is a modern digital platform that replaces paper-based methods, allowing users to easily create, update, and organize tasks with features like prioritization, deadlines, and collaboration. Its simple, user-friendly interface suits all skill levels, while automation reduces manual effort and boosts productivity, making it ideal for both personal use and team projects.",
     url: "https://github.com/BaraiyaNikhil/Projects/tree/0ba9632a74783a49cb6cbae7ca3800f6b2369d2a/mern-todo-app",
+    liveUrl: "https://todoapp-psi-bice.vercel.app",
     techs: [
       "HTML",
       "CSS",
