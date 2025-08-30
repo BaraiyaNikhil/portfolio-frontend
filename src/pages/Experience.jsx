@@ -13,7 +13,7 @@ export default function Experience() {
   return (
     <div
       id="experience"
-      className="w-full sticky lg:top-0 lg:z-20 bg-slate-300 lg:rounded-t-2xl h-full flex flex-col overflow-x-hidden p-6 sm:p-10"
+      className="w-full sticky lg:top-0 lg:-z-0 bg-slate-300 lg:rounded-t-2xl h-full flex flex-col overflow-x-hidden p-6 sm:p-10"
     >
       <span
         className="absolute top-3 right-3 text-slate-900 text-lg font-semibold tracking-wide"

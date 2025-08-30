@@ -31,7 +31,7 @@ export default function Projects() {
   return (
     <div
       id="projects"
-      className="w-full sticky bg-slate-300 lg:bg-slate-400 lg:top-10 lg:z-30 lg:rounded-t-2xl h-full flex flex-col overflow-x-hidden p-6 sm:p-10"
+      className="w-full sticky bg-slate-300 lg:bg-slate-400 lg:top-10 lg:z-0 lg:rounded-t-2xl h-full flex flex-col overflow-x-hidden p-6 sm:p-10"
     >
       <span
         className="absolute top-3 right-3 text-slate-900 text-lg font-semibold tracking-wide"

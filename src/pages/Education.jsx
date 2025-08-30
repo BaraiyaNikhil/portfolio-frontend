@@ -22,7 +22,7 @@ export default function Education() {
   ];
 
   return (
-    <div id="education" className="w-full sticky bg-slate-300 lg:bg-slate-400 lg:top-30 lg:z-50 lg:rounded-t-2xl flex flex-col overflow-x-hidden p-6 sm:p-10">
+    <div id="education" className="w-full sticky bg-slate-300 lg:bg-slate-400 lg:top-30 lg:z-30 lg:rounded-t-2xl flex flex-col overflow-x-hidden p-6 sm:p-10">
       <span
         className="absolute top-3 right-3 text-slate-900 text-lg font-semibold tracking-wide"
       >

@@ -21,7 +21,7 @@ export default function ProjectCard({
 
   return (
     <motion.article
-      className="disable-cursor-glow project-card relative w-full max-w-7xl mx-auto bg-transparent shadow-inner shadow-slate-500 rounded-2xl p-10 cursor-none"
+      className="disable-cursor-glow z-0 project-card relative w-full max-w-7xl mx-auto bg-transparent shadow-inner shadow-slate-500 rounded-2xl p-10 cursor-none"
       initial="hidden"
       whileInView="visible"
       viewport={viewport}

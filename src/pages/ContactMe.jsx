@@ -134,7 +134,7 @@ export default function ContactMe() {
   return (
     <div
       id="contact-me"
-      className="w-full relative lg:z-60 bg-slate-300 lg:rounded-t-2xl h-full flex flex-col overflow-x-hidden p-6 sm:p-10"
+      className="w-full relative lg:z-40 bg-slate-300 lg:rounded-t-2xl h-full flex flex-col overflow-x-hidden p-6 sm:p-10"
     >
       <motion.h1
         initial={{ opacity: 0, x: -40 }}
