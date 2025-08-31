@@ -1,5 +1,4 @@
 // src/Experience.jsx
-import React from "react";
 import { motion, useReducedMotion } from "motion/react";
 import johnCena from "../assets/imgs/john-cena.png";
 import { useData } from "../context/DataContext";
