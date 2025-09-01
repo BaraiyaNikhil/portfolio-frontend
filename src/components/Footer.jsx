@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import logo from "../assets/imgs/logo.png";
-import resume from "../assets/files/Resume_Nikhil_Baraiya.pdf";
+import resume from "../assets/files/Baraiya_Resume_Nikhil.pdf";
 
 const Footer = () => {
   const messages = [
