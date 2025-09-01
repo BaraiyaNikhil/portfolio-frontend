@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import logo from "../assets/imgs/logo.png";
 import profile from "../assets/imgs/profile.jpg";
-import resume from "../assets/files/Baraiya_Resume_Nikhil.pdf";
+import resume from "../assets/files/Baraiya_Nikhil_Resume.pdf";
 import { motion } from "motion/react";
 import { useData } from "../context/DataContext";
 import CanvasEffect from "../animetions/CanvasEffect";
